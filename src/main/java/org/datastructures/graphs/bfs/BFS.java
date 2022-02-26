@@ -1,6 +1,5 @@
 package org.datastructures.graphs.bfs;
 
-import org.datastructures.graphs.Graph;
 import org.datastructures.graphs.GraphNode;
 
 import java.util.ArrayDeque;
@@ -37,6 +36,29 @@ public class BFS {
         return result.toString();
     }
 
+    public boolean hasPath(GraphNode source, GraphNode destination) {
+
+        Queue<GraphNode> nodeQueue = new ArrayDeque<>();
+        nodeQueue.add(source);
+
+        while (!nodeQueue.isEmpty()) {
+
+            GraphNode node = nodeQueue.poll();
+
+            if (node.getNode().equals(destination.getNode())) {
+                return true;
+            }
+
+            for (GraphNode neighbour : node.getNeighbours()) {
+                nodeQueue.add(neighbour);
+            }
+
+        }
+
+        return false;
+
+    }
+
     public static void main(String[] args) {
 
         GraphNode<Character> e = new GraphNode<>('e', null);
@@ -47,7 +69,6 @@ public class BFS {
         GraphNode<Character> a = new GraphNode<>('a', new GraphNode[]{b, c});
 
         GraphNode<Character>[] graphNodes = new GraphNode[]{a, b, c, d, e, f};
-        Graph<Character> graph = new Graph(graphNodes);
 
         System.out.println(getBFS(a));
 

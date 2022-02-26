@@ -1,6 +1,5 @@
 package org.datastructures.graphs.dfs;
 
-import org.datastructures.graphs.Graph;
 import org.datastructures.graphs.GraphNode;
 
 import java.util.Stack;
@@ -8,7 +7,7 @@ import java.util.Stack;
 /**
  * Class representing depth first search operations on a graph.
  */
-public class DFS {
+public class BFS {
 
 
     public static <T> void printDFSRecursion(GraphNode startNode) {
@@ -26,7 +25,7 @@ public class DFS {
     }
 
 
-    public static <T> String printDepthFirst(Graph graph, GraphNode<T> startNode) {
+    public static <T> String printDepthFirst(GraphNode<T> startNode) {
 
         Stack<GraphNode> nodeStack = new Stack<>();
         StringBuilder result = new StringBuilder();
@@ -58,6 +57,33 @@ public class DFS {
         return result.toString();
     }
 
+    /**
+     * Detects if there is a path between two nodes.
+     *
+     * @param source
+     * @param destination
+     * @return
+     */
+    public static boolean haspath(GraphNode source, GraphNode destination) {
+
+        if (source.getNode().equals(destination.getNode())) {
+            return true;
+        }
+
+        if (null == source.getNeighbours() || 0 == source.getNeighbours().length) {
+            return false;
+        }
+
+        for (GraphNode neighbour : source.getNeighbours()) {
+
+            if (haspath(neighbour, destination)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static void main(String[] args) {
 
         GraphNode<Character> e = new GraphNode<>('e', null);
@@ -67,10 +93,8 @@ public class DFS {
         GraphNode<Character> b = new GraphNode<>('b', new GraphNode[]{d});
         GraphNode<Character> a = new GraphNode<>('a', new GraphNode[]{c, b});
 
-        GraphNode<Character>[] graphNodes = new GraphNode[]{a, b, c, d, e, f};
-        Graph<Character> graph = new Graph(graphNodes);
 
-        System.out.println(printDepthFirst(graph, a));
+        System.out.println(printDepthFirst(a));
         System.out.println("Printing using recursion");
         printDFSRecursion(a);
 
