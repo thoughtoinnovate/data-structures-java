@@ -11,6 +11,21 @@ import java.util.Stack;
 public class DFS {
 
 
+    public static <T> void printDFSRecursion(GraphNode startNode) {
+
+        System.out.println(String.valueOf(startNode.getNode()));
+
+        if (null == startNode.getNeighbours() || startNode.getNeighbours().length == 0) {
+            return;
+        }
+
+        for (GraphNode node : startNode.getNeighbours()) {
+            printDFSRecursion(node);
+        }
+
+    }
+
+
     public static <T> String printDepthFirst(Graph graph, GraphNode<T> startNode) {
 
         Stack<GraphNode> nodeStack = new Stack<>();
@@ -26,6 +41,8 @@ public class DFS {
 
             GraphNode node = nodeStack.pop();
             result.append(String.valueOf(node.getNode()));
+            result.append(",");
+
 
             if (null == node.getNeighbours() || 0 == node.getNeighbours().length) {
                 continue;
@@ -54,6 +71,8 @@ public class DFS {
         Graph<Character> graph = new Graph(graphNodes);
 
         System.out.println(printDepthFirst(graph, a));
+        System.out.println("Printing using recursion");
+        printDFSRecursion(a);
 
     }
 
