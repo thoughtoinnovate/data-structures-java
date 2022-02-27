@@ -36,4 +36,20 @@ class WaterIslandsTest {
 
     }
 
+    @Test
+    void getSmallestIslandsSize() {
+
+        Character[][] islandsInWater = new Character[][]{
+                {'W', 'L', 'W', 'W', 'L','W'},
+                {'L', 'L', 'W', 'W', 'L','W'},
+                {'W', 'L', 'W', 'W', 'W','W'},
+                {'W', 'W', 'W', 'L', 'L','W'},
+                {'W', 'W', 'W', 'L', 'L','W'},
+                {'W', 'W', 'W', 'L', 'W','W'}
+        };
+
+        int islandsSize = WaterIslands.getSmallestIslandsSize(islandsInWater, 'W');
+        System.out.println(islandsSize);
+        Assertions.assertTrue(2== islandsSize);
+    }
 }

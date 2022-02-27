@@ -56,4 +56,44 @@ public class WaterIslands {
 
 
     }
+
+    public static <T> int getSmallestIslandsSize(T[][] grid, T exclusionNode) {
+
+        int min = Integer.MAX_VALUE;
+        Set<String> traversedNodes = new HashSet<>();
+
+        for (int row = 0; row < grid.length; row++) {
+            for (int column = 0; column < grid[row].length; column++) {
+                int sizeOfIslands = exploreSizeOfIslands(grid, row, column, traversedNodes, exclusionNode);
+                if (sizeOfIslands > 0 && min > sizeOfIslands) {
+                    min = sizeOfIslands;
+                }
+            }
+        }
+
+        return min;
+    }
+
+    private static <T> int exploreSizeOfIslands(T[][] grid, int row, int column, Set<String> traversedNodes, T exclusionNode) {
+
+        boolean rowInbounds = row >= 0 && row < grid.length;
+        if (!rowInbounds) return 0;
+        boolean columnInbounds = column >= 0 && column < grid[row].length;
+        if (!columnInbounds) return 0;
+
+        if (exclusionNode == grid[row][column]) return 0;
+
+        String nodeAddress = row + "," + column;
+        if (traversedNodes.contains(nodeAddress)) return 0;
+
+        int count = 1;
+        traversedNodes.add(nodeAddress);
+
+        count += exploreSizeOfIslands(grid, row - 1, column, traversedNodes, exclusionNode);
+        count += exploreSizeOfIslands(grid, row + 1, column, traversedNodes, exclusionNode);
+        count += exploreSizeOfIslands(grid, row, column - 1, traversedNodes, exclusionNode);
+        count += exploreSizeOfIslands(grid, row, column + 1, traversedNodes, exclusionNode);
+
+        return count;
+    }
 }
