@@ -7,7 +7,7 @@ import java.util.*;
  */
 public class UndirectedGraph {
 
-    private static <T> Map<T, List<T>> buildUndirectedGraph(T[][] edges) {
+    public static <T> Map<T, List<T>> buildUndirectedGraph(T[][] edges) {
 
         if (null == edges || 0 == edges.length) {
             return null;
