@@ -32,10 +32,28 @@ class DepthFirstSearchTest {
         //Test iterative DFS
         List<Character> result = List.of(new Character[]{'a', 'b', 'd', 'e', 'c', 'f'});
         List<Character> values = DepthFirstSearch.getValues(binaryTree);
-        Assertions.assertTrue(result.containsAll(values));
+
+        boolean status = true;
+
+        status = isSame(result, values);
+        Assertions.assertTrue(status);
 
         //Recursion Test
+        status = true;
         List<Character> valuesUsingRecursion = DepthFirstSearch.getValuesUsingRecursion(binaryTree);
-        Assertions.assertTrue(result.containsAll(valuesUsingRecursion));
+        status = isSame(result, valuesUsingRecursion);
+        Assertions.assertTrue(status);
+    }
+
+    private boolean isSame(List<Character> result, List<Character> values) {
+
+        for (int i = 0; i < values.size(); i++) {
+
+            if (result.get(i) != values.get(i)) {
+                return false;
+            }
+
+        }
+        return true;
     }
 }
