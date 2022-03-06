@@ -38,4 +38,32 @@ public class BreadthFirstSearch {
         }
         return result;
     }
+
+    public static <T> boolean hasNode(Node<T> root, T target) {
+
+        if (null == root) {
+            return false;
+        }
+
+        Queue<Node> nodeQueue = new ArrayDeque<>();
+        nodeQueue.add(root);
+
+        while (!nodeQueue.isEmpty()) {
+            Node currentNode = nodeQueue.poll();
+
+            if (target.equals(currentNode.getValue())) {
+                return true;
+            }
+
+            if (null != currentNode.getLeft()) {
+                nodeQueue.add(currentNode.getLeft());
+            }
+            if (null != currentNode.getRight()) {
+                nodeQueue.add(currentNode.getRight());
+            }
+
+        }
+        return false;
+
+    }
 }

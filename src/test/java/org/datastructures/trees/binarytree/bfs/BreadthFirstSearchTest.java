@@ -43,4 +43,11 @@ class BreadthFirstSearchTest {
         }
         Assertions.assertTrue(status);
     }
+
+    @Test
+    void hasNode() {
+
+        Assertions.assertTrue(BreadthFirstSearch.hasNode(binaryTree, 'e'));
+        Assertions.assertFalse(BreadthFirstSearch.hasNode(binaryTree, 'z'));
+    }
 }
