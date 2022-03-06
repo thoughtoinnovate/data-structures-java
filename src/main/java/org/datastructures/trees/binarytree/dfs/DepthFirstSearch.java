@@ -68,5 +68,19 @@ public class DepthFirstSearch {
 
     }
 
+    public static <T> boolean hasNode(Node<T> root, T target) {
+
+        if (null == root) {
+            return false;
+        }
+
+        if (target.equals(root.getValue())) {
+            return true;
+        }
+
+        return hasNode(root.getRight(), target) || hasNode(root.getLeft(), target);
+
+    }
+
 
 }

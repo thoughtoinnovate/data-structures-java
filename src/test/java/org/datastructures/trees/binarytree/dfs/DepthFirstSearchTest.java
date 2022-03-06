@@ -56,4 +56,10 @@ class DepthFirstSearchTest {
         }
         return true;
     }
+
+    @Test
+    void hasNode() {
+        Assertions.assertTrue(DepthFirstSearch.hasNode(binaryTree, 'e'));
+        Assertions.assertFalse(DepthFirstSearch.hasNode(binaryTree, 'z'));
+    }
 }
