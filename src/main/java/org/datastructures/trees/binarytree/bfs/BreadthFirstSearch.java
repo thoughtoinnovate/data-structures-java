@@ -66,4 +66,29 @@ public class BreadthFirstSearch {
         return false;
 
     }
+
+    public static Integer sumOfInt(Node<Integer> root) {
+
+        if (root == null) {
+            return 0;
+        }
+
+        Integer sum = 0;
+        Queue<Node> nodeQueue = new ArrayDeque<>();
+
+        nodeQueue.add(root);
+
+        while (!nodeQueue.isEmpty()) {
+            Node node = nodeQueue.poll();
+
+            if (null != node.getValue()) sum = sum + (Integer) node.getValue();
+
+            if (null != node.getLeft()) nodeQueue.add(node.getLeft());
+            if (null != node.getRight()) nodeQueue.add(node.getRight());
+
+        }
+
+        return sum;
+
+    }
 }

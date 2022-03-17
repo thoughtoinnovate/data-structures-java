@@ -10,6 +10,7 @@ import java.util.List;
 class DepthFirstSearchTest {
 
     private Node<Character> binaryTree;
+    private Node<Integer> intTree;
 
     @BeforeEach
     void setUp() {
@@ -24,6 +25,20 @@ class DepthFirstSearchTest {
 
         //set root node
         binaryTree = new Node<>('a', b, c);
+
+        //Integer tree here
+
+        //leafs
+        Node<Integer> _4 = new Node<>(4, null, null);
+        Node<Integer> _2 = new Node<>(2, null, null);
+        Node<Integer> _1 = new Node<>(1, null, null);
+
+        //parents
+        Node<Integer> _11 = new Node<>(11, _4, _2);
+        Node<Integer> _5 = new Node<>(5, null, _1);
+
+        //root
+        intTree = new Node<>(3, _11, _5);
     }
 
     @Test
@@ -61,5 +76,17 @@ class DepthFirstSearchTest {
     void hasNode() {
         Assertions.assertTrue(DepthFirstSearch.hasNode(binaryTree, 'e'));
         Assertions.assertFalse(DepthFirstSearch.hasNode(binaryTree, 'z'));
+    }
+
+    @Test
+    void iterativeSum() {
+        Integer result = DepthFirstSearch.iterativeSum(intTree);
+        Assertions.assertTrue(26 == result);
+    }
+
+    @Test
+    void recursiveSum() {
+        Integer result = DepthFirstSearch.recursiveSum(intTree);
+        Assertions.assertTrue(26 == result);
     }
 }

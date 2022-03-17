@@ -82,5 +82,35 @@ public class DepthFirstSearch {
 
     }
 
+    public static Integer iterativeSum(Node<Integer> root) {
+
+        if (null == root) return 0;
+
+        Integer sum = 0;
+        Stack<Node> nodeStack = new Stack<>();
+        nodeStack.push(root);
+
+        while (!nodeStack.isEmpty()) {
+
+            Node node = nodeStack.pop();
+            if (null != node.getValue()) sum = sum + (Integer) node.getValue();
+            if (null != node.getRight()) nodeStack.push(node.getRight());
+            if (null != node.getLeft()) nodeStack.push(node.getLeft());
+
+        }
+        return sum;
+    }
+
+    public static Integer recursiveSum(Node<Integer> root) {
+
+        if (null == root) {
+            return 0;
+        }
+
+
+        return root.getValue() + recursiveSum(root.getLeft()) + recursiveSum(root.getRight());
+
+    }
+
 
 }

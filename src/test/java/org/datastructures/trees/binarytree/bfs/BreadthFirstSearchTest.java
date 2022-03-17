@@ -10,6 +10,7 @@ import java.util.List;
 class BreadthFirstSearchTest {
 
     private Node<Character> binaryTree;
+    private Node<Integer> intTree;
 
     @BeforeEach
     void setUp() {
@@ -25,6 +26,22 @@ class BreadthFirstSearchTest {
 
         //set root node
         binaryTree = new Node<>('a', b, c);
+
+        //Integer tree here
+
+        //leafs
+        Node<Integer> _4 = new Node<>(4, null, null);
+        Node<Integer> _2 = new Node<>(2, null, null);
+        Node<Integer> _1 = new Node<>(1, null, null);
+
+        //parents
+        Node<Integer> _11 = new Node<>(11, _4, _2);
+        Node<Integer> _5 = new Node<>(5, null, _1);
+
+        //root
+        intTree = new Node<>(3, _11, _5);
+
+
     }
 
     @Test
@@ -49,5 +66,10 @@ class BreadthFirstSearchTest {
 
         Assertions.assertTrue(BreadthFirstSearch.hasNode(binaryTree, 'e'));
         Assertions.assertFalse(BreadthFirstSearch.hasNode(binaryTree, 'z'));
+    }
+
+    @Test
+    void sumOfInt() {
+        Assertions.assertTrue(26 == BreadthFirstSearch.sumOfInt(intTree));
     }
 }
