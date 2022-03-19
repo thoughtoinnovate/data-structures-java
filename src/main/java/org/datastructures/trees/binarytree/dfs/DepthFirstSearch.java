@@ -112,5 +112,43 @@ public class DepthFirstSearch {
 
     }
 
+    public static Integer findMinIterative(Node<Integer> root) {
+
+        if (root == null) {
+            return null;
+        }
+
+        Integer min = Integer.MAX_VALUE;
+        Stack<Node> nodeStack = new Stack<>();
+        nodeStack.push(root);
+
+        while (!nodeStack.isEmpty()) {
+
+            Node node = nodeStack.pop();
+
+            if (null != node.getValue() && ((Integer) node.getValue()) < min) {
+                min = (Integer) node.getValue();
+            }
+
+            if (null != node.getRight()) nodeStack.push(node.getRight());
+            if (null != node.getLeft()) nodeStack.push(node.getLeft());
+        }
+
+        return min;
+
+    }
+
+    public static Integer findMinRecursive(Node<Integer> root) {
+
+        if (null == root) {
+            return Integer.MAX_VALUE;
+        }
+
+        Integer right = findMinRecursive(root.getRight());
+        Integer left = findMinRecursive(root.getLeft());
+
+        return right < left ? Math.min(right, root.getValue()) : Math.min(left, root.getValue());
+    }
+
 
 }

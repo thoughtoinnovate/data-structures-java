@@ -89,4 +89,16 @@ class DepthFirstSearchTest {
         Integer result = DepthFirstSearch.recursiveSum(intTree);
         Assertions.assertTrue(26 == result);
     }
+
+    @Test
+    void findMinIterative() {
+        Integer minIterative = DepthFirstSearch.findMinIterative(intTree);
+        Assertions.assertTrue(1 == minIterative);
+    }
+
+    @Test
+    void findMinRecursive() {
+        Integer minRecursive = DepthFirstSearch.findMinRecursive(intTree);
+        Assertions.assertTrue(1 == minRecursive);
+    }
 }
