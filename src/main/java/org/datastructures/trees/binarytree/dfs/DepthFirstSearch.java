@@ -150,6 +150,53 @@ public class DepthFirstSearch {
         return right < left ? Math.min(right, root.getValue()) : Math.min(left, root.getValue());
     }
 
+
+    /**
+     * Returns maximum sum of a path from root to leaf nodes.
+     *
+     * @return
+     */
+    public static Integer maxRootLeafSumPathIterative(Node<Integer> root) {
+
+        if (null == root) {
+            return null;
+        }
+
+        Integer max = Integer.MIN_VALUE;
+        Integer tempSum = 0;
+        Stack<Node> nodeStack = new Stack<>();
+        nodeStack.add(root);
+
+        while (!nodeStack.isEmpty()) {
+
+            Node node = nodeStack.pop();
+
+
+            //leafnode
+            if (null != node && null == node.getLeft() && null == node.getRight()) {
+
+                Integer leafSum = tempSum + (Integer) node.getValue();
+
+                if (leafSum > max) {
+                    max = leafSum;
+                    tempSum = leafSum - tempSum;
+                }
+
+
+            } else if (null != node && null != node.getValue()) {
+                tempSum += (Integer) node.getValue();
+            }
+
+            if (null != node.getRight()) nodeStack.push(node.getRight());
+            if (null != node.getLeft()) nodeStack.push(node.getLeft());
+
+
+        }
+
+        return max;
+
+    }
+
     /**
      * Returns maximum sum of a path from root to leaf nodes.
      *
