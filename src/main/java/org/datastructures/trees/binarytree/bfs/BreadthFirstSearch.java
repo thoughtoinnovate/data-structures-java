@@ -91,4 +91,29 @@ public class BreadthFirstSearch {
         return sum;
 
     }
+
+    public static Integer findMin(Node<Integer> root) {
+
+        if (null == root) {
+            return null;
+        }
+
+        Integer min = Integer.MAX_VALUE;
+        Queue<Node> nodeQueue = new ArrayDeque<>();
+        nodeQueue.add(root);
+
+        while (!nodeQueue.isEmpty()) {
+
+            Node node = nodeQueue.poll();
+
+            if (null != node.getValue() && ((Integer) node.getValue()) < min) {
+                min = (Integer) node.getValue();
+            }
+            if (null != node.getLeft()) nodeQueue.add(node.getLeft());
+            if (null != node.getRight()) nodeQueue.add(node.getRight());
+        }
+
+        return min;
+
+    }
 }

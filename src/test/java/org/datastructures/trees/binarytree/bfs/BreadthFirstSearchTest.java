@@ -72,4 +72,10 @@ class BreadthFirstSearchTest {
     void sumOfInt() {
         Assertions.assertTrue(26 == BreadthFirstSearch.sumOfInt(intTree));
     }
+
+    @Test
+    void findMin() {
+        Integer min = BreadthFirstSearch.findMin(intTree);
+        Assertions.assertTrue(min.equals(1));
+    }
 }
