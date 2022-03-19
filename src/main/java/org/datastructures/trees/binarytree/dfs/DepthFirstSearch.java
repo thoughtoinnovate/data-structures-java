@@ -199,7 +199,7 @@ public class DepthFirstSearch {
 
     /**
      * Returns maximum sum of a path from root to leaf nodes.
-     *
+     * Recursive
      * @return
      */
     public static Integer maxRootLeafSumPath(Node<Integer> root) {
