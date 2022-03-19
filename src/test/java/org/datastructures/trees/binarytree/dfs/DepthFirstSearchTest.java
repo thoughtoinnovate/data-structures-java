@@ -101,4 +101,27 @@ class DepthFirstSearchTest {
         Integer minRecursive = DepthFirstSearch.findMinRecursive(intTree);
         Assertions.assertTrue(1 == minRecursive);
     }
+
+    @Test
+    void maxRootLeafSumPath() {
+
+        //Integer tree here
+
+        //leafs
+        Node<Integer> _4 = new Node<>(4, null, null);
+        Node<Integer> _2 = new Node<>(2, null, null);
+        Node<Integer> _1 = new Node<>(1, null, null);
+
+        //parents
+        Node<Integer> _11 = new Node<>(11, _4, _2);
+        Node<Integer> _3 = new Node<>(3, null, _1);
+
+        //root
+        intTree = new Node<>(5, _11, _3);
+
+        Integer maxSum = DepthFirstSearch.maxRootLeafSumPath(intTree);
+        Assertions.assertTrue(20 == maxSum);
+        Assertions.assertTrue(Integer.MIN_VALUE == DepthFirstSearch.maxRootLeafSumPath(null));
+
+    }
 }
